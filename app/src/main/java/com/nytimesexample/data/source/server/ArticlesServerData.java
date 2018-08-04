@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Eval-Ranjitha on 04-08-2018.
+ * Created by Ashok on 04-08-2018.
  */
 
 public class ArticlesServerData implements ArticlesDataSource{

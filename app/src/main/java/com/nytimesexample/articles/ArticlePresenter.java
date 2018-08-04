@@ -9,7 +9,7 @@ import com.nytimesexample.data.source.ArticlesRepo;
 import java.util.List;
 
 /**
- * Created by Eval-Ranjitha on 04-08-2018.
+ * Created by Ashok on 04-08-2018.
  */
 
 public class ArticlePresenter implements ArticleContract.Presenter {

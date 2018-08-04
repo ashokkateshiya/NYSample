@@ -3,7 +3,7 @@ package com.nytimesexample.data;
 import java.io.Serializable;
 
 /**
- * Created by Eval-Ranjitha on 04-08-2018.
+ * Created by Ashok on 04-08-2018.
  */
 
 public class MediaItem implements Serializable {

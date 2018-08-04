@@ -7,7 +7,7 @@ import com.nytimesexample.data.source.server.ArticlesServerData;
 import com.nytimesexample.data.source.server.RetrofitHelper;
 
 /**
- * Created by Eval-Ranjitha on 04-08-2018.
+ * Created by Ashok on 04-08-2018.
  */
 
 public class MyApplication extends Application{

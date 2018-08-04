@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.nytimesexample.DateFormatter;
 import com.nytimesexample.MyApplication;
 import com.nytimesexample.R;
 import com.nytimesexample.data.Article;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +167,7 @@ public class ArticleListActivity extends AppCompatActivity implements ArticleCon
             , DateFormatter.DATE_FORMAT_YYYY_MM_DD, DateFormatter.DATE_FORMAT_DD_MMM_YYYY));
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
+            Picasso.get().load(mValues.get(position).getMedia().get(0).getMediaItems().get(1).getUrl()).into(holder.ivThumb);
         }
 
         @Override
@@ -174,12 +177,14 @@ public class ArticleListActivity extends AppCompatActivity implements ArticleCon
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView tvTitle, tvBy, tvPublishedDate;
+            final ImageView ivThumb;
 
             ViewHolder(View view) {
                 super(view);
                 tvTitle = view.findViewById(R.id.tvTitle);
                 tvBy = view.findViewById(R.id.tvBy);
                 tvPublishedDate = view.findViewById(R.id.tvPublishDate);
+                ivThumb = view.findViewById(R.id.ivThumb);
             }
         }
     }

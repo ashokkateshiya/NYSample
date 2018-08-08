@@ -1,26 +1,59 @@
 package com.nytimesexample;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.assertion.ViewAssertions;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
 
+import com.nytimesexample.articles.ArticleListActivity;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static android.support.test.espresso.action.ViewActions.click;
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.nytimesexample", appContext.getPackageName());
+    @Rule
+    public ActivityTestRule<ArticleListActivity> mTasksActivityTestRule =
+            new ActivityTestRule<ArticleListActivity>(ArticleListActivity.class) {
+                @Override
+                protected void beforeActivityLaunched() {
+                    super.beforeActivityLaunched();
+                }
+            };
+
+    @Test
+    public void listOnItemClick() {
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (getCount() == 0) return;
+
+        Espresso.onView(ViewMatchers.withId(R.id.item_list))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+
+        Espresso.onView(ViewMatchers.withId(R.id.webView))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int getCount() {
+        RecyclerView rv = mTasksActivityTestRule.getActivity().findViewById(R.id.item_list);
+        return rv.getAdapter().getItemCount();
     }
 }
